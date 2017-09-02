@@ -5,10 +5,14 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 var ent = require('ent');
 var fs = require('fs');
+var port = 3000;
 
-server.listen(3000);
+server.listen(port, function () {
+  console.log('Server listening at port %d', port);
+});
 
-var allClients = {};
+// Routing for css and js files
+app.use(express.static(__dirname + '/public'));
 
 // Loading the page index.html
 app.get('/', function(req, res) {
@@ -21,13 +25,11 @@ io.sockets.on('connection', function(socket, username) {
         username = ent.encode(username);
         socket.username = username;
         socket.broadcast.emit('new_client', username);
-        allClients[socket] = username;        
     });
 
     // Cleanup when clients disconnect
     socket.on('disconnect', function() {       
-        socket.broadcast.emit('disc', allClients[socket]);
-        delete allClients[socket];
+        socket.broadcast.emit('disc', socket.username);
         delete io.sockets[socket.id];
         delete io.sockets.sockets[socket.id];
     });
@@ -41,5 +43,3 @@ io.sockets.on('connection', function(socket, username) {
         });
     });
 });
-
-server.listen(3000);
