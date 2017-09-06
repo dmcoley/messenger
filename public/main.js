@@ -19,7 +19,7 @@ socket.on('new_client', function(username, all_users) {
 })
 
 // Update the active users in the view when a client disconnects
-socket.on('disc', function(username, all_users) {
+socket.on('disconnect_client', function(username, all_users) {
 	insertMessage(username + " has left the chat!");
     updateUsers(all_users);
 })

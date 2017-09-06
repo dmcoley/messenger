@@ -31,7 +31,7 @@ io.sockets.on('connection', function(socket, username) {
     // Cleanup when clients disconnect
     socket.on('disconnect', function() { 
         users.splice(users.indexOf(socket.username), 1);    
-        socket.broadcast.emit('disc', socket.username, users);
+        socket.broadcast.emit('disconnect_client', socket.username, users);
         delete io.sockets[socket.id];
         delete io.sockets.sockets[socket.id];
     });
