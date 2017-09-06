@@ -1,10 +1,12 @@
 // Connecting to socket.io
 var socket = io();
 
-// The username is requested, send to the server and display in the title
-var username = prompt('What\'s your username?');
+// The username is requested and sent to the server and display in the title
+var username = null;
+do {
+	username = prompt('What\'s your username?');
+} while (!username);
 socket.emit('new_client', username);
-document.title = username + ' - ' + document.title;
 addUser(username);
 
 // When a message is received it's inserted in the page
