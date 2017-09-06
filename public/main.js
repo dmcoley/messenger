@@ -74,5 +74,5 @@ function updateUsers(usernames) {
 
 // Adds the given user to the view
 function addUser(user) {
-	$('#online_users').append('<li><h1>' + user + '</h1></li>');
+	$('#online_users').append('<li><div class=chatbox__user--active><p>' + user + '</p></div></li>');
 }
