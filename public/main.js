@@ -18,11 +18,13 @@ socket.on('new_client', function(username, all_users) {
     updateUsers(all_users);
 })
 
+// Update the active users in the view when a client disconnects
 socket.on('disc', function(username, all_users) {
 	insertMessage(username + " has left the chat!");
     updateUsers(all_users);
 })
 
+// Update the active users in the view when a new client logs in
 socket.on('login', function(all_users) {
 	updateUsers(all_users);
 })
@@ -30,17 +32,15 @@ socket.on('login', function(all_users) {
 // When the form is sent, the message is sent and displayed on the page
 $('#chat_form').submit(function () {
    var message = $('#message').val();
-
-   // Sends the message to the others
    socket.emit('message', message); 
-   insertMessage(username, message); // Also displays the message on our page
-   $('#message').val('').focus(); // Empties the chat form and puts the focus back on it
+   insertMessage(username, message);
+   $('#message').val('').focus();
    return false; // Blocks 'classic' sending of the form
 });
 
 // Adds a message to the page
 function insertMessage(username, message) {
-   // Update the Angular.js controller
+   // Update the Angular.js controller and eagerly apply it
    angular.element($('#chat_form')).scope().$apply(function() {
    	angular.element($('#chat_form')).scope().messages.push({
       Name: username,
@@ -48,6 +48,7 @@ function insertMessage(username, message) {
     })});
 } 
 
+// Updates the users in the view to be the passed in collection of users
 function updateUsers(usernames) {
 	// Remove old users
 	var listItems = $("#online_users li");
@@ -69,6 +70,7 @@ function updateUsers(usernames) {
 	});
 }  
 
+// Adds the given user to the view
 function addUser(user) {
 	$('#online_users').append('<li><h1>' + user + '</h1></li>');
 }
