@@ -6,6 +6,9 @@
         "socket.io": "~1.2.1",
         "ent": "~0.1.0"
     },
+    "scripts": {
+        "start": "node app.js"
+    },
     "author": "Derek Coley",
     "description": "A lightweight real-time messenger using socket.io"
 }
