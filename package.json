@@ -1,14 +1,31 @@
 {
-    "name": "mesenger",
-    "version": "0.1.0",
-    "dependencies": {
-        "express": "~3.3.4",
-        "socket.io": "~1.2.1",
-        "ent": "~0.1.0"
-    },
-    "scripts": {
-        "start": "node app.js"
-    },
-    "author": "Derek Coley",
-    "description": "A lightweight real-time messenger using socket.io"
+  "name": "mesenger",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "~3.3.4",
+    "socket.io": "~1.2.1",
+    "ent": "~0.1.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Derek Coley",
+  "description": "A lightweight real-time messenger using socket.io",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmcoley/messenger.git"
+  },
+  "keywords": [
+    "socket.io",
+    "messenger",
+    "chat",
+    "room"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmcoley/messenger/issues"
+  },
+  "homepage": "https://github.com/dmcoley/messenger#readme"
 }
